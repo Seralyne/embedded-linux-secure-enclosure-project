@@ -1,0 +1,20 @@
+[Unit]
+Description=Gateway Serial Communication Service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/gateway
+ExecStart=/opt/gateway/venv/bin/python3 /opt/gateway/gateway.py
+
+# Auto-recovery configuration (Fulfills Step 4)
+Restart=always
+RestartSec=3
+
+# Direct logging layout (Fulfills Step 5)
+StandardOutput=append:/var/log/gateway_audit.log
+StandardError=append:/var/log/gateway_audit.log
+
+[Install]
+WantedBy=multi-user.target

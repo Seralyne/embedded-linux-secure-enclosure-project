@@ -1,0 +1,9 @@
+[Unit]
+Description=Gateway Health Check Execution Wire
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/opt/gateway/scripts/gateway_healthcheck.sh
+StandardOutput=append:/var/log/gateway_health.log
+StandardError=append:/var/log/gateway_health.log

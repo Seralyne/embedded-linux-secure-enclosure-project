@@ -1,0 +1,9 @@
+[Unit]
+Description=Gateway Log Rotation Execution Wire
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/opt/gateway/scripts/gateway_rotate.sh
+StandardOutput=append:/var/log/gateway_rotation_history.log
+StandardError=append:/var/log/gateway_rotation_history.log
