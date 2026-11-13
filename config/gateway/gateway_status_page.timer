@@ -1,0 +1,10 @@
+[Unit]
+Description=Refresh the gateway local status page every five seconds
+
+[Timer]
+OnBootSec=30s
+OnUnitActiveSec=5s
+Persistent=true
+
+[Install]
+WantedBy=timers.target

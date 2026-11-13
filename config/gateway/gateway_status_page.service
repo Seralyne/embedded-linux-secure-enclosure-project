@@ -1,0 +1,7 @@
+[Unit]
+Description=Render the gateway local status page
+After=gateway.service
+
+[Service]
+Type=oneshot
+ExecStart=/opt/gateway/scripts/gateway_status_page.sh

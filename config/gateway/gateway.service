@@ -1,20 +1,22 @@
 [Unit]
 Description=Gateway Serial Communication Service
-After=network.target
+Requires=mosquitto.service
+After=mosquitto.service
 
 [Service]
 Type=simple
 User=root
 WorkingDirectory=/opt/gateway
+EnvironmentFile=-/etc/default/gateway
 ExecStart=/opt/gateway/venv/bin/python3 /opt/gateway/gateway.py
 
 # Auto-recovery configuration (Fulfills Step 4)
 Restart=always
 RestartSec=3
 
-# Direct logging layout (Fulfills Step 5)
-StandardOutput=append:/var/log/gateway_audit.log
-StandardError=append:/var/log/gateway_audit.log
+# Direct logging layout (Phase 11 audit log)
+StandardOutput=append:/var/log/gateway/audit.log
+StandardError=append:/var/log/gateway/audit.log
 
 [Install]
 WantedBy=multi-user.target
